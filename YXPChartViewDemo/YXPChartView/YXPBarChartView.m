@@ -59,12 +59,7 @@
 
 - (void)reloadBarView{
     
-    for (UIView *subView in self.subviews) {
-        [subView.layer removeAllAnimations];
-        subView.layer.sublayers = nil;
-        [subView removeFromSuperview];
-        
-    }
+    [self clearSubViews];
     
     [self caculeteSomeVales];
     
@@ -72,6 +67,15 @@
     
     [self beginAnimation];
     
+}
+
+- (void)clearSubViews{
+    for (UIView *subView in _barViewsArray) {
+        [subView.layer removeAllAnimations];
+        subView.layer.sublayers = nil;
+        [subView removeFromSuperview];
+        
+    }
 }
 
 - (void)caculeteSomeVales{

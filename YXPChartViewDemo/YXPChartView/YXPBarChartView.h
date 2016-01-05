@@ -26,4 +26,6 @@
 @property (nonatomic, strong) YXPChartPointValue *(^pointValueOfPlot)(NSInteger indexPlot,NSInteger indexPoint);
 
 - (void)reloadBarView;
+
+- (void)clearSubViews;
 @end
