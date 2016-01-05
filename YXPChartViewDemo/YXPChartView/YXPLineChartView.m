@@ -42,8 +42,9 @@
     CGSize size = self.bounds.size;
     if (plot) {
        
-            [self drawGradualColor:plot ];
+        [self drawGradualColor:plot ];
        
+        YXPChartPointValue *firstPoint = plot.plotVales[0];
 
         CGFloat xScale = (size.width- self.marginsSpace.left- self.marginsSpace.right)/(plot.plotVales.count-1);
         
@@ -51,9 +52,9 @@
         
         chartViewLayer.frame = self.bounds;
         
-        chartViewLayer.strokeColor = [UIColor greenColor].CGColor;
+        chartViewLayer.strokeColor = firstPoint.strokerColor.CGColor;
         
-        chartViewLayer.lineWidth = 1;
+        chartViewLayer.lineWidth = firstPoint.strokerWidth;
         
         chartViewLayer.backgroundColor = [UIColor clearColor].CGColor;
         
@@ -65,7 +66,6 @@
         
         CGFloat leftBeginPoint = self.bounds.size.height - (plot.beginControlVale - [plot.minValue floatValue])*yScaleValue - self.marginsSpace.bottom;
         
-        YXPChartPointValue *firstPoint = plot.plotVales[0];
         
         CGFloat firstYValue = self.bounds.size.height - ([firstPoint.value floatValue] -[plot.minValue floatValue])*yScaleValue - [plot.minValue floatValue]- self.marginsSpace.bottom;
         
@@ -98,7 +98,7 @@
             YXPChartPointValue *ordinaryPoint = ordinaryPoints[0];
             CAShapeLayer *ordinaryCircleLayer = [CAShapeLayer layer];
             ordinaryCircleLayer.strokeColor = ordinaryPoint.strokerColor.CGColor;
-            ordinaryCircleLayer.lineWidth = 2;
+            ordinaryCircleLayer.lineWidth = ordinaryPoint.strokerWidth;
             ordinaryCircleLayer.fillColor = ordinaryPoint.fillColor.CGColor;
             ordinaryCircleLayer.frame = self.bounds;
             
@@ -144,7 +144,7 @@
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.bounds;
-    gradientLayer.colors = @[(id)[UIColor greenColor].CGColor,(id)[UIColor clearColor].CGColor];
+    gradientLayer.colors = @[(id)[UIColor colorWithRed:0 green:0.8 blue:1.0 alpha:0.5].CGColor,(id)[UIColor clearColor].CGColor];
     [self.layer addSublayer:gradientLayer];
 
     CAShapeLayer *maskLayer = [CAShapeLayer layer];

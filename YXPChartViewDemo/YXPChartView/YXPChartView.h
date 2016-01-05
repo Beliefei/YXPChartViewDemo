@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger,YXPChartViewStyle) {
 
 @property (nonatomic, assign) UIEdgeInsets marginsSpace;
 
+@property (nonatomic, assign) CGFloat barSpace;
+
 #pragma mark - 相关数据的属性Block
 
 @property (nonatomic, assign) NSInteger (^containNumberSacalesOfOnChartViewXAxis)();

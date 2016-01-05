@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,21 +20,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtG-vn-UZg" customClass="YXPChartView">
-                                <rect key="frame" x="75" y="225" width="450" height="150"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeI-1d-wil" customClass="YXPChartView">
+                                <rect key="frame" x="75" y="236" width="450" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtG-vn-UZg" customClass="YXPChartView">
+                                <rect key="frame" x="75" y="60" width="450" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrW-Hp-nIx">
+                                <rect key="frame" x="277" y="540" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="updateView" destination="BYZ-38-t0r" eventType="touchUpInside" id="sDA-pd-lQu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OeI-1d-wil" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A8S-5l-xHB"/>
                             <constraint firstItem="PtG-vn-UZg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="3:4" id="AID-xw-4uH"/>
-                            <constraint firstItem="PtG-vn-UZg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mtn-G7-0gf"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xrW-Hp-nIx" secondAttribute="bottom" constant="30" id="C5l-Ac-1Za"/>
+                            <constraint firstItem="xrW-Hp-nIx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerXWithinMargins" id="O18-63-Yyy"/>
+                            <constraint firstItem="OeI-1d-wil" firstAttribute="top" secondItem="PtG-vn-UZg" secondAttribute="bottom" constant="26" id="QBT-76-bfn"/>
+                            <constraint firstItem="OeI-1d-wil" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="3:4" id="eKz-1y-heU"/>
+                            <constraint firstItem="OeI-1d-wil" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1:4" id="iE1-km-W9B"/>
                             <constraint firstItem="PtG-vn-UZg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uhw-Z3-eb2"/>
+                            <constraint firstItem="PtG-vn-UZg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="60" id="vz4-sw-NaR"/>
                             <constraint firstItem="PtG-vn-UZg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1:4" id="wg0-LF-6re"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="PtG-vn-UZg" id="X8C-Ck-0aE"/>
+                        <outlet property="chartViewBar" destination="OeI-1d-wil" id="czL-c2-ia7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

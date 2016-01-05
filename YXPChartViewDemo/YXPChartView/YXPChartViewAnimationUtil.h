@@ -11,6 +11,6 @@
 
 @interface YXPChartViewAnimationUtil : NSObject
 
-+ (void)lineChartView:(UIView *)view beginTime:(NSTimeInterval)beginTime animationDelegate:(id)delagte;
-
++ (void)lineChartView:(UIView *)view beginTime:(NSTimeInterval)beginTime;
++ (void)barChartView:(UIView *)barView beginTime:(NSTimeInterval)beginTime;
 @end

@@ -24,6 +24,7 @@
 @implementation YXPChartView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     [self makeSomeDefaultSetting];
 
 }
@@ -150,7 +151,7 @@
     
     [self drawSpecialPoint];
     
-    [self beginAllAnimation:0];
+    [self beginAllAnimation];
     
     
     
@@ -159,10 +160,11 @@
 }
 
 - (void)createXYView{
+    CGSize size = [self caculateContenChartViewSize];
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(self.margins.left, self.margins.top, size.width , size.height)];
     if (self.chartStyle == YXPChartViewDefaultStyle) {
         //折线图
-        CGSize size = [self caculateContenChartViewSize];
-        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(self.margins.left, self.margins.top, size.width , size.height)];
+       
         NSInteger numberScale = self.containNumberSacalesOfOnChartViewXAxis()-1;
         CGFloat xScale = (size.width- self.marginsSpace.left- self.marginsSpace.right)/numberScale;
         
@@ -187,11 +189,13 @@
         xyLaber.path = path;
         [self.contentView.layer addSublayer:xyLaber]
         ;
-        [self addSubview:self.contentView];
     }else{
         //柱状图
+        
     }
     
+    [self addSubview:self.contentView];
+
     
 }
 
@@ -207,7 +211,6 @@
 - (void)drawValueView{
     if (self.chartStyle == YXPChartViewDefaultStyle) {
         __weak typeof(self) weakSelf = self;
-        
         for (NSInteger i = 0 ; i < self.numberOfPlots();i++) {
             YXPLineChartView *lineChartView = [YXPLineChartView new];
             lineChartView.frame = self.contentView.bounds;
@@ -227,19 +230,38 @@
             [lineChartView reloadLine];
         }
     }else{
-        
+//        __weak typeof(self) weakSelf = self;
+        for (NSInteger i = 0 ; i < self.numberOfPlots();i++) {
+            YXPBarChartView *lineChartView = [YXPBarChartView new];
+            lineChartView.frame = self.contentView.bounds;
+            lineChartView.numberOfPlots = self.numberOfPlots;
+            lineChartView.numberOfPointOnPlot = self.numberOfPointOnPlot;
+            lineChartView.plotOfChartView = self.plotOfChartView;
+            lineChartView.marginsSpace = self.marginsSpace;
+            
+            [self.contentView addSubview:lineChartView];
+            [self.chartViewArray addObject:lineChartView];
+            [lineChartView reloadBarView];
+        }
+
     }
 
 }
 
 
-- (void)beginAllAnimation:(NSInteger)index{
+- (void)beginAllAnimation{
 
-    [YXPChartViewAnimationUtil lineChartView:self.chartViewArray[index] beginTime:1 animationDelegate:self];
+    if (self.chartStyle == YXPChartViewDefaultStyle) {
+        for (NSInteger i = 0; i <2; i ++) {
+             [YXPChartViewAnimationUtil lineChartView:self.chartViewArray[i] beginTime:i*4 ];
+        }
+        
 
-    [YXPChartViewAnimationUtil lineChartView:self.chartViewArray[index+1] beginTime:1 animationDelegate:self];
-
-
+    }else{
+        
+    }
+    
+    
 }
 
 

@@ -30,9 +30,9 @@
          @property (nonatomic, assign) BOOL isSepcial;
          */
         
-        self.strokerWidth = 2;
+        self.strokerWidth = 3;
         
-        self.strokerColor = [UIColor whiteColor];
+        self.strokerColor = [UIColor orangeColor];
         self.circleColor = [UIColor greenColor];
         self.radium = 5;
         self.fillColor = [UIColor greenColor];
