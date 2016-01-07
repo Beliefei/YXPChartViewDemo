@@ -50,6 +50,7 @@
     animation.fromValue = (id)layer.path;
     animation.toValue = (__bridge id)endPath;
     animation.removedOnCompletion = NO;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.fillMode = kCAFillModeForwards;
     //    animation.delegate = delagte;
     [layer addAnimation:animation forKey:@"shapeLayerPath"];
